@@ -1,4 +1,4 @@
-// tag: Dijsktra
+// tag: Dijkstra
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -9,25 +9,27 @@ struct Edge {
   int u, v;
   ll w;
   Edge(int _u = 0, int _v = 0, ll _w = 0) : u(_u), v(_v), w(_w) {}
-  friend bool operator<(const Edge& a, const Edge& b) {
-    return a.w < b.w;
+  friend bool operator>(const Edge& a, const Edge& b) {
+    return a.w > b.w;
   }
 };
 
-constexpr int mxN = 2e5 + 1;
+constexpr int mxN = 2e5 + 5;
 int n, m, k, r, id[mxN];
 vector<Edge> adj[mxN];
 bool vis[mxN];
 ll dis[mxN];
 
-void dijsktra() {
+void dijkstra() {
   memset(dis, 0x3f3f3f3f, sizeof(dis));
   assert(dis[0] > 1e12 && dis[n] > 1e12);
-  priority_queue<Edge> pq;
-  for(int i = 0; i <= n; ++i)
-    if(!id[i])
+  priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
+  for(int i = 0; i <= n; ++i) {
+    if(!id[i]) {
       dis[i] = 0;
-  pq.emplace(0, 0, 0);
+      pq.emplace(i, i, 0);
+    }
+  }
   while(!pq.empty()) {
     auto cur = pq.top(); pq.pop();
     if(vis[cur.v]) continue;
@@ -58,7 +60,7 @@ int main() {
     adj[u].emplace_back(u, v, w);
     adj[v].emplace_back(v, u, w);
   }
-  dijsktra();
-  sort(dis, dis + n + 1, greater<int>());
+  dijkstra();
+  sort(dis, dis + n + 1, greater<ll>());
   cout << dis[r] << '\n';
 }
