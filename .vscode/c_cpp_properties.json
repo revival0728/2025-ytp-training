@@ -15,6 +15,22 @@
             "cStandard": "c17",
             "intelliSenseMode": "windows-gcc-x64",
             "cppStandard": "c++14"
+        },
+        {
+            "name": "Mac",
+            "includePath": [
+                "/Users/fuhsing/Repository/2025-ytp-training/**"
+            ],
+            "defines": [],
+            "compilerPath": "/opt/homebrew/bin/g++-15",
+            "cStandard": "c17",
+            "intelliSenseMode": "macos-gcc-arm64",
+            "cppStandard": "c++14",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4
